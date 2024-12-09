@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkftt05naft5j"]
+
+[ext_resource type="Script" path="res://misc/Bullet.gd" id="1_hjjv7"]
+[ext_resource type="Script" path="res://misc/DebugLine.gd" id="2_b138m"]
+[ext_resource type="AudioStream" uid="uid://dxa3c3d2ppdra" path="res://assets/sounds/hit1.wav" id="3_glrd8"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_mtfl0"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_272rh"]
+radius = 0.25
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_hjjv7")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.25
+material = SubResource("ORMMaterial3D_mtfl0")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_272rh")
+
+[node name="DebugLine" type="MeshInstance3D" parent="."]
+script = ExtResource("2_b138m")
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_glrd8")

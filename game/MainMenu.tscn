@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://blktdvefgo3ar"]
+
+[ext_resource type="Script" path="res://game/PlayLevel.gd" id="1_lno7q"]
+[ext_resource type="PackedScene" uid="uid://glq2u1bavjgf" path="res://levels/level01/Level01.tscn" id="2_rpq6f"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 599.0
+offset_top = 439.0
+offset_right = 1440.0
+offset_bottom = 1022.0
+theme_override_font_sizes/font_size = 80
+text = "Level 1"
+script = ExtResource("1_lno7q")
+scene = ExtResource("2_rpq6f")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 605.0
+offset_top = 283.0
+offset_right = 1462.0
+offset_bottom = 430.0
+theme_override_font_sizes/normal_font_size = 80
+text = "TDX: Tower Defense X"

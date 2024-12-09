@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://r85ibnpgqihm"]
+
+[ext_resource type="Script" path="res://towers/BoxTower.gd" id="1_qmg4d"]
+[ext_resource type="AudioStream" uid="uid://do3shfjlsq05e" path="res://assets/sounds/shoot1.wav" id="2_u1i2v"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_tuhj0"]
+albedo_color = Color(0.53797, 0.390072, 0.997438, 1)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gp68j"]
+transparency = 1
+albedo_color = Color(0.297557, 0.617649, 0.856825, 0.239216)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lyonw"]
+size = Vector3(1, 2, 1)
+
+[node name="BoxTower" type="StaticBody3D"]
+script = ExtResource("1_qmg4d")
+metadata/is_tower = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(1, 2, 1)
+material = SubResource("ORMMaterial3D_tuhj0")
+
+[node name="RangeIndicator" type="CSGSphere3D" parent="."]
+radius = 40.0
+radial_segments = 32
+rings = 16
+material = SubResource("ORMMaterial3D_gp68j")
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77712, 0)
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_u1i2v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_lyonw")

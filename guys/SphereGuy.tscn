@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7av0nvegwhx3"]
+
+[ext_resource type="Script" path="res://misc/PathFollower.gd" id="1_fwbsa"]
+[ext_resource type="Script" path="res://guys/SphereGuy.gd" id="1_ibbq4"]
+[ext_resource type="Script" path="res://misc/DebugLine.gd" id="2_y25lq"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_bg5l8"]
+albedo_color = Color(0.74, 0.2664, 0.2664, 1)
+emission_enabled = true
+emission = Color(0.23, 0.0805, 0.0904667, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sxrv8"]
+radius = 1.0
+
+[node name="SphereGuy" type="CharacterBody3D"]
+script = ExtResource("1_ibbq4")
+
+[node name="PathFollower" type="Node" parent="." node_paths=PackedStringArray("body", "debug_line")]
+script = ExtResource("1_fwbsa")
+body = NodePath("..")
+debug_line = NodePath("../DebugLine")
+
+[node name="DebugLine" type="MeshInstance3D" parent="."]
+script = ExtResource("2_y25lq")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, -6.80016e-05, 5.35218e-05, 6.80012e-05, 1, -1.12535e-05, -5.352e-05, 1.1253e-05, 1, 0, 0, 0)
+radius = 1.0
+radial_segments = 16
+rings = 8
+material = SubResource("ORMMaterial3D_bg5l8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sxrv8")
