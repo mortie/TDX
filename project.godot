@@ -22,7 +22,7 @@ SoundFX="*res://misc/SoundFX.tscn"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="ignore"
+window/stretch/aspect="expand"
 display_server/driver.linuxbsd="wayland"
 window/vsync/vsync_mode=3
 
