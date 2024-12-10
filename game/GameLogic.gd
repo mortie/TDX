@@ -6,6 +6,7 @@ extends Node
 @export var death_area: CollisionObject3D
 @export var camera: Camera3D:
 	set(c): $TowerDragger.camera = c
+@export var game_over_scene: Resource
 
 @onready var towers: Node = $Towers
 @onready var guys: Node = $Guys
@@ -15,9 +16,9 @@ extends Node
 @onready var tower_dragger: Node3D = $TowerDragger
 @onready var money_count_label: Label = $MoneyCountLabel
 @onready var health_count_label: Label = $HealthCountLabel
+@onready var death_icon: Label = $DeathIcon
 @onready var next_round_btn: Button = $NextRoundBtn
 @onready var death_sound_player: AudioStreamPlayer3D = $DeathSoundPlayer
-
 @onready var buy_tower_btns = [
 	[$BuyBoxTower, preload("res://towers/BoxTower.tscn"), 5],
 ]
@@ -25,6 +26,8 @@ extends Node
 var round_nodes: Array[Node]
 var next_round_index: int = 0
 var round_prize: int = 0
+var sounds_playing: int = 0
+var in_round: bool = true
 
 func _ready():
 	round_nodes = rounds.get_children()
@@ -39,23 +42,29 @@ func _ready():
 	death_area.connect("body_entered", on_body_entered_death_area)
 
 func _process(_delta: float):
-	if next_round_btn.disabled and guys.get_child_count() == 0:
+	if in_round and sounds_playing == 0 and guys.get_child_count() == 0:
+		if health <= 0:
+			call_deferred("on_game_over")
+			return
+		in_round = false
 		next_round_btn.disabled = false
 		update_money(money + round_prize)
+		status_label.text = "Prepare for round " + str(next_round_index + 1) + "..."
 
 func next_round():
 	if next_round_index >= len(round_nodes):
 		return
 
-	var round = round_nodes[next_round_index]
-	for guy in round.get_children():
+	var round_node = round_nodes[next_round_index]
+	for guy in round_node.get_children():
 		guy.reparent(guys)
-	if round.has_meta("prize"):
-		round_prize = round.get_meta("prize")
+	if round_node.has_meta("prize"):
+		round_prize = round_node.get_meta("prize")
 	else:
 		round_prize = 0
 	next_round_index += 1
 	status_label.text = "Round " + str(next_round_index)
+	in_round = true
 	next_round_btn.disabled = true
 
 func update_money(new_money: int):
@@ -67,6 +76,7 @@ func update_money(new_money: int):
 func update_health(new_health: int):
 	health = new_health
 	health_count_label.text = str(health)
+	death_icon.visible = health <= 0
 
 func spawn_tower(res: PackedScene, price: int):
 	update_money(money - price)
@@ -83,7 +93,12 @@ func on_body_entered_death_area(body: Node3D):
 	var sound = death_sound_player.duplicate()
 	death_area.add_child(sound)
 	sound.connect("finished", func finished():
+		sounds_playing -= 1
 		sound.queue_free())
+	sounds_playing += 1
 	sound.play()
 	update_health(health - 1)
 	body.queue_free()
+
+func on_game_over():
+	get_tree().change_scene_to_packed(game_over_scene)

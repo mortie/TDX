@@ -14,33 +14,48 @@ script = ExtResource("2_j0rpb")
 [node name="Bullets" type="Node" parent="."]
 
 [node name="NextRoundBtn" type="Button" parent="."]
-offset_left = 1026.0
-offset_top = 599.0
-offset_right = 1116.0
-offset_bottom = 630.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -52.0
+offset_right = -29.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
+disabled = true
 text = "Begin Round"
 
 [node name="StatusLabel" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = -0.036
-anchor_top = -1.032
-anchor_right = -0.036
-anchor_bottom = -1.032
-offset_left = 1068.47
-offset_top = 1239.74
-offset_right = 1157.47
-offset_bottom = 1262.74
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -229.0
+offset_top = -81.0
+offset_right = 8.0
+offset_bottom = -58.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "Prepare..."
+text = "Prepare for round X..."
+horizontal_alignment = 1
 
 [node name="BuyBoxTower" type="Button" parent="."]
-offset_left = 25.0
-offset_top = 597.0
-offset_right = 137.0
-offset_bottom = 628.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -50.0
+offset_right = 133.0
+offset_bottom = -19.0
+grow_vertical = 0
 text = "Box Tower 5¢"
 
 [node name="MoneyLabel" type="Label" parent="."]
@@ -55,7 +70,7 @@ offset_left = 89.0
 offset_top = 25.0
 offset_right = 146.0
 offset_bottom = 48.0
-text = "0¢"
+text = "X¢"
 
 [node name="HealthLabel" type="Label" parent="."]
 offset_left = 28.0
@@ -69,11 +84,18 @@ offset_left = 89.0
 offset_top = 50.0
 offset_right = 146.0
 offset_bottom = 73.0
-text = "0
-"
+text = "X"
 
 [node name="TowerDragger" type="Node3D" parent="."]
 script = ExtResource("1_qhjrt")
 
 [node name="DeathSoundPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_jvpv7")
+
+[node name="DeathIcon" type="Label" parent="."]
+offset_left = 45.0
+offset_top = 72.0
+offset_right = 89.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 40
+text = "☠️"

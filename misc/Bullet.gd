@@ -16,7 +16,7 @@ func _ready():
 	target_loc = target.position
 
 func find_next_target() -> bool:
-	var nearest_guy: Node3D
+	var nearest_guy: Node3D = null
 	var nearest_sq_dist: float
 	for guy in guys.get_children():
 		if not is_instance_valid(guy):

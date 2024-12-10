@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://glq2u1bavjgf"]
+[gd_scene load_steps=14 format=3 uid="uid://glq2u1bavjgf"]
 
 [ext_resource type="Script" path="res://misc/Camera.gd" id="1_4erc2"]
 [ext_resource type="PackedScene" uid="uid://dfmis2xt2dohc" path="res://game/GameLogic.tscn" id="1_7g0bj"]
+[ext_resource type="PackedScene" uid="uid://cy4v2g43tkqq2" path="res://game/GameOver.tscn" id="2_4ac6j"]
 [ext_resource type="Texture2D" uid="uid://cq6h0ka04y3k8" path="res://levels/level01/texture.png" id="2_vs6an"]
 [ext_resource type="ArrayMesh" uid="uid://ovxq88oaf6uk" path="res://levels/level01/terrain.obj" id="3_sxwtd"]
 [ext_resource type="PackedScene" uid="uid://c7av0nvegwhx3" path="res://guys/SphereGuy.tscn" id="4_xonq2"]
@@ -49,6 +50,7 @@ health = 10
 rounds = NodePath("../Rounds")
 death_area = NodePath("../Path/DeathArea")
 camera = NodePath("../Camera3D")
+game_over_scene = ExtResource("2_4ac6j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)

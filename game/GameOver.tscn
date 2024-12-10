@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy4v2g43tkqq2"]
+
+[ext_resource type="Script" path="res://game/GoToScene.gd" id="1_vj2ar"]
+
+[node name="GameOver" type="Node2D"]
+position = Vector2(575, 333)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -27.5
+offset_right = 195.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "Game Over!"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -598.0
+offset_top = -342.5
+offset_right = 598.0
+offset_bottom = 342.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 51.0
+offset_right = 48.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+script = ExtResource("1_vj2ar")
+scene = &"res://game/MainMenu.tscn"
+metadata/_edit_use_anchors_ = true

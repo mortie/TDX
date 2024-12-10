@@ -5,8 +5,9 @@ extends Node3D
 # we avoid stuttering as new things show up for the first time.
 
 var timer: float = 1
+const MAIN_MENU = preload("res://game/MainMenu.tscn")
 
 func _process(delta: float):
 	timer -= delta
 	if timer <= 0:
-		get_tree().change_scene_to_file("res://game/MainMenu.tscn")
+		get_tree().change_scene_to_packed(MAIN_MENU)

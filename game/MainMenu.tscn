@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://blktdvefgo3ar"]
+[gd_scene load_steps=2 format=3 uid="uid://blktdvefgo3ar"]
 
-[ext_resource type="Script" path="res://game/PlayLevel.gd" id="1_lno7q"]
-[ext_resource type="PackedScene" uid="uid://glq2u1bavjgf" path="res://levels/level01/Level01.tscn" id="2_rpq6f"]
+[ext_resource type="Script" path="res://game/GoToScene.gd" id="1_lno7q"]
 
 [node name="MainMenu" type="Node2D"]
 
@@ -36,4 +35,4 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "Level 1"
 script = ExtResource("1_lno7q")
-scene = ExtResource("2_rpq6f")
+scene = &"res://levels/level01/Level01.tscn"
