@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://crqjburuah4pe"]
+
+[ext_resource type="Script" path="res://misc/SoundFX.gd" id="1_0hgsp"]
+[ext_resource type="AudioStream" uid="uid://cgjys1oft47y7" path="res://assets/sounds/click.wav" id="1_dhl3x"]
+[ext_resource type="AudioStream" uid="uid://5focf1lux0qv" path="res://assets/sounds/coin.wav" id="2_1kucb"]
+
+[node name="SoundFX" type="Node"]
+script = ExtResource("1_0hgsp")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_dhl3x")
+volume_db = -9.0
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1kucb")
+volume_db = -9.0

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkftt05naft5j"]
 
-[ext_resource type="Script" path="res://misc/Bullet.gd" id="1_hjjv7"]
+[ext_resource type="Script" path="res://game/Bullet.gd" id="1_hjjv7"]
 [ext_resource type="Script" path="res://misc/DebugLine.gd" id="2_b138m"]
-[ext_resource type="AudioStream" uid="uid://dxa3c3d2ppdra" path="res://assets/sounds/hit1.wav" id="3_glrd8"]
+[ext_resource type="AudioStream" uid="uid://dxa3c3d2ppdra" path="res://assets/sounds/hit.wav" id="3_glrd8"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_mtfl0"]
 albedo_color = Color(0, 0, 0, 1)

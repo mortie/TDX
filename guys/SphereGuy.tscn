@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7av0nvegwhx3"]
 
-[ext_resource type="Script" path="res://misc/PathFollower.gd" id="1_fwbsa"]
+[ext_resource type="Script" path="res://game/PathFollower.gd" id="1_fwbsa"]
 [ext_resource type="Script" path="res://guys/SphereGuy.gd" id="1_ibbq4"]
 [ext_resource type="Script" path="res://misc/DebugLine.gd" id="2_y25lq"]
 

@@ -6,7 +6,7 @@ extends Node3D
 var fire_range: float = 40
 var fire_timeout: float = 1
 var timer: float = 0
-var bullet_scene = preload("res://misc/Bullet.tscn")
+var bullet_scene = preload("res://game/Bullet.tscn")
 @onready var muzzle: Node3D = $Muzzle
 @onready var shoot_sound: AudioStreamPlayer3D = $ShootSound
 

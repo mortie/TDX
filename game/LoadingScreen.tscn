@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/LoadingScreen.gd" id="1_7tohy"]
 [ext_resource type="PackedScene" uid="uid://r85ibnpgqihm" path="res://towers/BoxTower.tscn" id="2_nk00u"]
 [ext_resource type="PackedScene" uid="uid://c7av0nvegwhx3" path="res://guys/SphereGuy.tscn" id="3_aumud"]
-[ext_resource type="PackedScene" uid="uid://dkftt05naft5j" path="res://misc/Bullet.tscn" id="4_vu1hf"]
+[ext_resource type="PackedScene" uid="uid://dkftt05naft5j" path="res://game/Bullet.tscn" id="4_vu1hf"]
 [ext_resource type="Script" path="res://misc/DebugLine.gd" id="5_nvf50"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xt256"]

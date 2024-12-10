@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/TowerDragger.gd" id="1_qhjrt"]
 [ext_resource type="Script" path="res://game/GameLogic.gd" id="2_j0rpb"]
-[ext_resource type="AudioStream" uid="uid://b7jh5l1non3xj" path="res://assets/sounds/explosion1.wav" id="3_jvpv7"]
+[ext_resource type="AudioStream" uid="uid://b7jh5l1non3xj" path="res://assets/sounds/explosion.wav" id="3_jvpv7"]
 
 [node name="GameLogic" type="Node"]
 script = ExtResource("2_j0rpb")

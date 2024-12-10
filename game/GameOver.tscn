@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cy4v2g43tkqq2"]
 
-[ext_resource type="Script" path="res://game/GoToScene.gd" id="1_vj2ar"]
+[ext_resource type="Script" path="res://misc/GoToScene.gd" id="1_vj2ar"]
 
 [node name="GameOver" type="Node2D"]
 position = Vector2(575, 333)

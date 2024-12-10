@@ -58,6 +58,7 @@ func _process(_delta: float):
 		next_round_btn.disabled = true
 
 func next_round():
+	SoundFX.click_sound.play()
 	if next_round_index >= len(round_nodes):
 		return
 
@@ -86,6 +87,7 @@ func update_health(new_health: int):
 	death_icon.visible = health <= 0
 
 func spawn_tower(res: PackedScene, price: int):
+	SoundFX.coin_sound.play()
 	update_money(money - price)
 	var tower = res.instantiate()
 	tower.guys = guys

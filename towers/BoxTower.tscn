@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://r85ibnpgqihm"]
 
 [ext_resource type="Script" path="res://towers/BoxTower.gd" id="1_qmg4d"]
-[ext_resource type="AudioStream" uid="uid://do3shfjlsq05e" path="res://assets/sounds/shoot1.wav" id="2_u1i2v"]
+[ext_resource type="AudioStream" uid="uid://do3shfjlsq05e" path="res://assets/sounds/shoot.wav" id="2_u1i2v"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_tuhj0"]
 albedo_color = Color(0.53797, 0.390072, 0.997438, 1)

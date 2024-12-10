@@ -28,8 +28,10 @@ func _input(evt: InputEvent):
 		if held_node:
 			held_node.process_mode = PROCESS_MODE_INHERIT
 			held_node = null
+			SoundFX.click_sound.play()
 		elif hovered_node and enable_pickup:
 			pick_up(hovered_node)
+			SoundFX.click_sound.play()
 
 func _physics_process(_delta: float):
 	var intersection = intersect_mouse_world_pos()
