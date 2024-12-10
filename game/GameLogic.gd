@@ -16,6 +16,7 @@ extends Node
 @onready var money_count_label: Label = $MoneyCountLabel
 @onready var health_count_label: Label = $HealthCountLabel
 @onready var next_round_btn: Button = $NextRoundBtn
+@onready var death_sound_player: AudioStreamPlayer3D = $DeathSoundPlayer
 
 @onready var buy_tower_btns = [
 	[$BuyBoxTower, preload("res://towers/BoxTower.tscn"), 5],
@@ -68,12 +69,7 @@ func update_health(new_health: int):
 	health_count_label.text = str(health)
 
 func spawn_tower(res: PackedScene, price: int):
-	if price > money:
-		return
-
-	money -= price
-	money_count_label.text = str(money) + "¢"
-
+	update_money(money - price)
 	var tower = res.instantiate()
 	tower.guys = guys
 	tower.bullets = bullets
@@ -83,5 +79,11 @@ func spawn_tower(res: PackedScene, price: int):
 func on_body_entered_death_area(body: Node3D):
 	if not body.get_meta("is_guy", false):
 		return
+
+	var sound = death_sound_player.duplicate()
+	death_area.add_child(sound)
+	sound.connect("finished", func finished():
+		sound.queue_free())
+	sound.play()
 	update_health(health - 1)
 	body.queue_free()

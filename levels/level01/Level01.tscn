@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://glq2u1bavjgf"]
+[gd_scene load_steps=13 format=3 uid="uid://glq2u1bavjgf"]
 
 [ext_resource type="Script" path="res://misc/Camera.gd" id="1_4erc2"]
 [ext_resource type="PackedScene" uid="uid://dfmis2xt2dohc" path="res://game/GameLogic.tscn" id="1_7g0bj"]
@@ -33,13 +33,21 @@ data = PackedVector3Array(-25.3496, 38.5685, 49.4173, -23.6617, 39.2087, 54.0586
 [sub_resource type="SphereShape3D" id="SphereShape3D_0aog8"]
 radius = 10.0
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ejn3p"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 1, 0.780392)
+emission_enabled = true
+emission = Color(0.77, 0.0154, 0.0279765, 1)
+emission_energy_multiplier = 10.0
+
 [node name="Level1" type="Node"]
 
 [node name="GameLogic" parent="." node_paths=PackedStringArray("rounds", "death_area", "camera") instance=ExtResource("1_7g0bj")]
 money = 20
 health = 10
 rounds = NodePath("../Rounds")
-death_area = NodePath("../Path/Marker3D7/DeathArea")
+death_area = NodePath("../Path/DeathArea")
 camera = NodePath("../Camera3D")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -92,10 +100,17 @@ gizmo_extents = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0943, 26.3317, -200.755)
 gizmo_extents = 5.0
 
-[node name="DeathArea" type="Area3D" parent="Path/Marker3D7"]
+[node name="DeathArea" type="Area3D" parent="Path"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.0257, 23.0651, -195.461)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Path/Marker3D7/DeathArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path/DeathArea"]
 shape = SubResource("SphereShape3D_0aog8")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Path/DeathArea"]
+radius = 10.0
+radial_segments = 32
+rings = 20
+material = SubResource("ORMMaterial3D_ejn3p")
 
 [node name="Rounds" type="Node" parent="."]
 process_mode = 4

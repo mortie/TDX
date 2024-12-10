@@ -28,6 +28,7 @@ func _physics_process(delta: float) -> void:
 
 	var bullet = bullet_scene.instantiate()
 	bullet.target = closest_guy
+	bullet.guys = guys
 	bullet.position = muzzle.global_position
 	bullets.add_child(bullet)
 	timer += fire_timeout
