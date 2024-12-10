@@ -2,7 +2,8 @@ extends Node3D
 
 @export var camera: Camera3D
 
-var held_node: CollisionObject3D
+@export var enable_pickup: bool = true
+@export var held_node: CollisionObject3D
 var held_node_rid: RID
 var hovered_node: CollisionObject3D
 var hovered_node_rid: RID
@@ -27,7 +28,7 @@ func _input(evt: InputEvent):
 		if held_node:
 			held_node.process_mode = PROCESS_MODE_INHERIT
 			held_node = null
-		elif hovered_node:
+		elif hovered_node and enable_pickup:
 			pick_up(hovered_node)
 
 func _physics_process(_delta: float):

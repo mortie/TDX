@@ -8,7 +8,12 @@ albedo_color = Color(0.53797, 0.390072, 0.997438, 1)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gp68j"]
 transparency = 1
-albedo_color = Color(0.297557, 0.617649, 0.856825, 0.239216)
+cull_mode = 2
+albedo_color = Color(0.301, 0.617767, 0.86, 0.0823529)
+emission = Color(1.78084e-06, 0.614263, 0.518845, 1)
+emission_energy_multiplier = 10.0
+clearcoat_enabled = true
+backlight = Color(0, 0.569986, 0.912261, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lyonw"]
 size = Vector3(1, 2, 1)

@@ -48,8 +48,14 @@ func _process(_delta: float):
 			return
 		in_round = false
 		next_round_btn.disabled = false
+		tower_dragger.enable_pickup = true
 		update_money(money + round_prize)
 		status_label.text = "Prepare for round " + str(next_round_index + 1) + "..."
+
+	if tower_dragger.held_node == null:
+		next_round_btn.disabled = in_round
+	else:
+		next_round_btn.disabled = true
 
 func next_round():
 	if next_round_index >= len(round_nodes):
@@ -66,6 +72,7 @@ func next_round():
 	status_label.text = "Round " + str(next_round_index)
 	in_round = true
 	next_round_btn.disabled = true
+	tower_dragger.enable_pickup = false
 
 func update_money(new_money: int):
 	money = new_money
