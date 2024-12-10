@@ -14,6 +14,7 @@ radius = 1.0
 
 [node name="SphereGuy" type="CharacterBody3D"]
 script = ExtResource("1_ibbq4")
+metadata/is_guy = true
 
 [node name="PathFollower" type="Node" parent="." node_paths=PackedStringArray("body", "debug_line")]
 script = ExtResource("1_fwbsa")

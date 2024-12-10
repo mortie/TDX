@@ -40,7 +40,7 @@ func _physics_process(_delta: float):
 		held_node.position = intersection["position"]
 	else:
 		var node = intersection["collider"] as Node3D
-		if node is CollisionObject3D and node.has_meta("is_tower"):
+		if node is CollisionObject3D and node.get_meta("is_tower", false):
 			hovered_node = node
 		else:
 			hovered_node = null

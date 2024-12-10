@@ -2,12 +2,12 @@ extends CharacterBody3D
 
 signal damage
 
+@export var path: Node:
+	set(value): $PathFollower.path = value
+
 @onready var sphere = $CSGSphere3D
 var hitpoints = 2
 
-@export var path: Node:
-	set(value): $PathFollower.path = value
-	
 func _ready():
 	damage.connect(_on_damage)
 	
