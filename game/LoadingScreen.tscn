@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvra6ewqt8r52"]
+
+[ext_resource type="Script" path="res://game/LoadingScreen.gd" id="1_7tohy"]
+[ext_resource type="PackedScene" uid="uid://r85ibnpgqihm" path="res://towers/BoxTower.tscn" id="2_nk00u"]
+[ext_resource type="PackedScene" uid="uid://c7av0nvegwhx3" path="res://guys/SphereGuy.tscn" id="3_aumud"]
+[ext_resource type="PackedScene" uid="uid://dkftt05naft5j" path="res://misc/Bullet.tscn" id="4_vu1hf"]
+[ext_resource type="Script" path="res://misc/DebugLine.gd" id="5_nvf50"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xt256"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_484q6"]
+sky_material = SubResource("ProceduralSkyMaterial_xt256")
+
+[sub_resource type="Environment" id="Environment_abivt"]
+background_mode = 2
+sky = SubResource("Sky_484q6")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="LoadingScreen" type="Node3D"]
+script = ExtResource("1_7tohy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_abivt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0477515, 0.998859, 0, -0.998859, 0.0477515, 0, 57.8066, 0)
+
+[node name="Dummies" type="Node" parent="."]
+process_mode = 4
+
+[node name="BoxTower" parent="Dummies" node_paths=PackedStringArray("guys", "bullets") instance=ExtResource("2_nk00u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.14726, 0, 0)
+guys = NodePath("../Empty")
+bullets = NodePath("../Empty")
+
+[node name="SphereGuy" parent="Dummies" node_paths=PackedStringArray("path") instance=ExtResource("3_aumud")]
+path = NodePath("../Empty")
+
+[node name="Bullet" parent="Dummies" node_paths=PackedStringArray("target") instance=ExtResource("4_vu1hf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.44462, 0, 0)
+target = NodePath("../SphereGuy")
+
+[node name="DebugLine" type="MeshInstance3D" parent="Dummies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4667, 0, 0)
+script = ExtResource("5_nvf50")
+end = Vector3(-5, 0, 0)
+
+[node name="Empty" type="Node" parent="Dummies"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -27.5
+offset_right = 195.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -598.0
+offset_top = -342.5
+offset_right = 598.0
+offset_bottom = 342.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

@@ -3,8 +3,8 @@ extends MeshInstance3D
 
 @export var color: Color = Color.GREEN
 
-var start: Vector3
-var end: Vector3
+@export var start: Vector3
+@export var end: Vector3
 var material: ORMMaterial3D = ORMMaterial3D.new()
 
 func _ready():
