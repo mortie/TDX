@@ -6,19 +6,19 @@
 [node name="MainMenu" type="Node2D"]
 
 [node name="Button" type="Button" parent="."]
-offset_left = 599.0
-offset_top = 439.0
-offset_right = 1440.0
-offset_bottom = 1022.0
+offset_left = 235.0
+offset_top = 192.0
+offset_right = 878.0
+offset_bottom = 454.0
 theme_override_font_sizes/font_size = 80
 text = "Level 1"
 script = ExtResource("1_lno7q")
 scene = ExtResource("2_rpq6f")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 605.0
-offset_top = 283.0
-offset_right = 1462.0
-offset_bottom = 430.0
+offset_left = 126.0
+offset_top = 35.0
+offset_right = 983.0
+offset_bottom = 182.0
 theme_override_font_sizes/normal_font_size = 80
 text = "TDX: Tower Defense X"

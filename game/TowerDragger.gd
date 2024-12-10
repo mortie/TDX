@@ -2,9 +2,9 @@ extends Node3D
 
 @export var camera: Camera3D
 
-var held_node: Node3D
+var held_node: CollisionObject3D
 var held_node_rid: RID
-var hovered_node: Node3D
+var hovered_node: CollisionObject3D
 var hovered_node_rid: RID
 
 func intersect_mouse_world_pos() -> Dictionary:
@@ -16,14 +16,19 @@ func intersect_mouse_world_pos() -> Dictionary:
 		params.exclude = [held_node_rid]
 	return get_world_3d().direct_space_state.intersect_ray(params)
 
+func pick_up(node: CollisionObject3D):
+	held_node = node
+	held_node_rid = node.get_rid()
+	held_node.process_mode = PROCESS_MODE_DISABLED
+	hovered_node = null
+
 func _input(evt: InputEvent):
 	if evt is InputEventMouseButton and evt.pressed and evt.button_index == MOUSE_BUTTON_LEFT:
 		if held_node:
+			held_node.process_mode = PROCESS_MODE_INHERIT
 			held_node = null
 		elif hovered_node:
-			held_node = hovered_node
-			held_node_rid = hovered_node_rid
-			hovered_node = null
+			pick_up(hovered_node)
 
 func _physics_process(_delta: float):
 	var intersection = intersect_mouse_world_pos()
@@ -35,8 +40,7 @@ func _physics_process(_delta: float):
 		held_node.position = intersection["position"]
 	else:
 		var node = intersection["collider"] as Node3D
-		if node.has_meta("is_tower"):
-			hovered_node = intersection["collider"]
-			hovered_node_rid = intersection["rid"]
+		if node is CollisionObject3D and node.has_meta("is_tower"):
+			hovered_node = node
 		else:
 			hovered_node = null

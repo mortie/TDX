@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cq6h0ka04y3k8" path="res://levels/level01/texture.png" id="2_vs6an"]
 [ext_resource type="ArrayMesh" uid="uid://ovxq88oaf6uk" path="res://levels/level01/terrain.obj" id="3_sxwtd"]
 [ext_resource type="PackedScene" uid="uid://c7av0nvegwhx3" path="res://guys/SphereGuy.tscn" id="4_xonq2"]
-[ext_resource type="PackedScene" uid="uid://r85ibnpgqihm" path="res://towers/BoxTower.tscn" id="5_vlqyv"]
-[ext_resource type="Script" path="res://misc/GUI.gd" id="6_fsna3"]
+[ext_resource type="Script" path="res://game/HUD.gd" id="5_awcmw"]
+[ext_resource type="Script" path="res://game/TowerDragger.gd" id="6_fsna3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5mmep"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -53,9 +53,49 @@ mesh = ExtResource("3_sxwtd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_aiyq4")
 
-[node name="GUI" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+[node name="GUI" type="Node" parent="."]
+
+[node name="TowerDragger" type="Node3D" parent="GUI" node_paths=PackedStringArray("camera")]
 script = ExtResource("6_fsna3")
-camera = NodePath("../Camera3D")
+camera = NodePath("../../Camera3D")
+
+[node name="HUD" type="CanvasLayer" parent="GUI" node_paths=PackedStringArray("rounds", "current_round", "towers", "guys", "bullets")]
+script = ExtResource("5_awcmw")
+rounds = NodePath("../../Rounds")
+current_round = NodePath("../../Guys")
+towers = NodePath("../../Towers")
+guys = NodePath("../../Guys")
+bullets = NodePath("../../Bullets")
+
+[node name="NextRoundBtn" type="Button" parent="GUI/HUD"]
+offset_left = 1026.0
+offset_top = 599.0
+offset_right = 1116.0
+offset_bottom = 630.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Next Level"
+
+[node name="StatusLabel" type="Label" parent="GUI/HUD"]
+anchors_preset = -1
+anchor_left = -0.036
+anchor_top = -1.032
+anchor_right = -0.036
+anchor_bottom = -1.032
+offset_left = 1068.47
+offset_top = 1239.74
+offset_right = 1157.47
+offset_bottom = 1262.74
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Preparing..."
+
+[node name="SpawnBoxTower" type="Button" parent="GUI/HUD"]
+offset_left = 25.0
+offset_top = 597.0
+offset_right = 82.0
+offset_bottom = 628.0
+text = "Tower"
 
 [node name="Path" type="Node" parent="."]
 
@@ -87,59 +127,161 @@ gizmo_extents = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0943, 26.3317, -200.755)
 gizmo_extents = 5.0
 
-[node name="Guys" type="Node" parent="."]
-
-[node name="SphereGuy" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.711, 21.75, 189.049)
-path = NodePath("../../Path")
-
-[node name="SphereGuy2" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4877, 21.75, 188.89)
-path = NodePath("../../Path")
-
-[node name="SphereGuy3" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6018, 21.75, 190.046)
-path = NodePath("../../Path")
-
-[node name="SphereGuy4" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8763, 21.75, 190.282)
-path = NodePath("../../Path")
-
-[node name="SphereGuy5" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5855, 21.75, 193.558)
-path = NodePath("../../Path")
-
-[node name="SphereGuy6" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.476, 21.75, 193.967)
-path = NodePath("../../Path")
-
-[node name="SphereGuy7" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3687, 21.75, 194.27)
-path = NodePath("../../Path")
-
-[node name="SphereGuy8" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9076, 21.75, 196.322)
-path = NodePath("../../Path")
-
-[node name="SphereGuy9" parent="Guys" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4255, 21.75, 196.677)
-path = NodePath("../../Path")
-
 [node name="Towers" type="Node" parent="."]
 
-[node name="BoxTower" parent="Towers" node_paths=PackedStringArray("guys", "bullets") instance=ExtResource("5_vlqyv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.392, 39, 144.249)
-guys = NodePath("../../Guys")
-bullets = NodePath("../../Bullets")
-
-[node name="BoxTower2" parent="Towers" node_paths=PackedStringArray("guys", "bullets") instance=ExtResource("5_vlqyv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.515, 39, 43.808)
-guys = NodePath("../../Guys")
-bullets = NodePath("../../Bullets")
-
-[node name="BoxTower3" parent="Towers" node_paths=PackedStringArray("guys", "bullets") instance=ExtResource("5_vlqyv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.523, 39, -117.777)
-guys = NodePath("../../Guys")
-bullets = NodePath("../../Bullets")
+[node name="Guys" type="Node" parent="."]
 
 [node name="Bullets" type="Node" parent="."]
+
+[node name="Rounds" type="Node" parent="."]
+process_mode = 4
+
+[node name="Round01" type="Node3D" parent="Rounds"]
+visible = false
+
+[node name="SphereGuy" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.711, 21.75, 189.049)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy2" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4877, 21.75, 188.89)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy3" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6018, 21.75, 190.046)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy4" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8763, 21.75, 190.282)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy5" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5855, 21.75, 193.558)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy6" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.476, 21.75, 193.967)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy7" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3687, 21.75, 194.27)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy8" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9076, 21.75, 196.322)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy9" parent="Rounds/Round01" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4255, 21.75, 196.677)
+path = NodePath("../../../Path")
+
+[node name="Round02" type="Node3D" parent="Rounds"]
+visible = false
+
+[node name="SphereGuy" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.711, 21.75, 189.049)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy2" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4877, 21.75, 188.89)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy3" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6018, 21.75, 190.046)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy4" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8763, 21.75, 190.282)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy5" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5855, 21.75, 193.558)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy6" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.476, 21.75, 193.967)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy7" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3687, 21.75, 194.27)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy8" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9076, 21.75, 196.322)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy9" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4255, 21.75, 196.677)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy19" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.48, 21.75, 189.049)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy20" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.2567, 21.75, 188.89)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy21" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3708, 21.75, 190.046)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy22" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6453, 21.75, 190.282)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy23" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.3545, 21.75, 193.558)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy24" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.245, 21.75, 193.967)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy25" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1377, 21.75, 194.27)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy26" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6766, 21.75, 196.322)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy27" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1945, 21.75, 196.677)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy10" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99926, 21.75, 189.049)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy11" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.77596, 21.75, 188.89)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy12" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10994, 21.75, 190.046)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy13" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83544, 21.75, 190.282)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy14" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87376, 21.75, 193.558)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy15" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76426, 21.75, 193.967)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy16" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34304, 21.75, 194.27)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy17" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19586, 21.75, 196.322)
+path = NodePath("../../../Path")
+
+[node name="SphereGuy18" parent="Rounds/Round02" node_paths=PackedStringArray("path") instance=ExtResource("4_xonq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71376, 21.75, 196.677)
+path = NodePath("../../../Path")
