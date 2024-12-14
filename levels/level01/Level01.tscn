@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://glq2u1bavjgf"]
+[gd_scene load_steps=16 format=3 uid="uid://glq2u1bavjgf"]
 
 [ext_resource type="Script" path="res://misc/Camera.gd" id="1_4erc2"]
 [ext_resource type="PackedScene" uid="uid://dfmis2xt2dohc" path="res://game/GameLogic.tscn" id="1_7g0bj"]
@@ -7,6 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://ovxq88oaf6uk" path="res://levels/level01/terrain.obj" id="3_sxwtd"]
 [ext_resource type="PackedScene" uid="uid://c7av0nvegwhx3" path="res://guys/SphereGuy.tscn" id="4_xonq2"]
 [ext_resource type="AudioStream" uid="uid://bfqprsfm0eex" path="res://assets/music/music1.ogg" id="7_tmld6"]
+[ext_resource type="Script" path="res://misc/AudioLoop.gd" id="8_f0gpw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5mmep"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -386,4 +387,4 @@ path = NodePath("../../../Path")
 stream = ExtResource("7_tmld6")
 volume_db = -16.0
 autoplay = true
-parameters/looping = true
+script = ExtResource("8_f0gpw")
